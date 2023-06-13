@@ -78,8 +78,3 @@ export function convertToOHLC(inputData, interval) {
   
     return combinedData;
   }
-/* 
-export default { 
-    convertRawDataToTimeValVol,
-    convertToOHLC,
-} */
