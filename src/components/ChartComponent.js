@@ -36,7 +36,7 @@ export default function ChartComponent(props) {
 			chart.timeScale().fitContent();
 
 
-			const newSeries = chart.addBarSeries({ lineColor, topColor: areaTopColor, bottomColor: areaBottomColor });
+			const newSeries = chart.addCandlestickSeries({ lineColor, topColor: areaTopColor, bottomColor: areaBottomColor });
 			newSeries.setData(data);
 
 			chart.applyOptions({
