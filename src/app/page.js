@@ -13,10 +13,10 @@ import {
 } from '@/utils/ConvertRawDataToTimeLTP';
 import CheckboxComponent from '@/components/CheckboxComponent';
 
-const interval = 60000
+const interval = 300 //seconds(5 min)
 const timeValVolData = convertRawDataToTimeValVol(data1);
 const ohlcData = convertToOHLC(timeValVolData, interval);
-//console.log(ohlcData, "here")
+//console.log(timeValVolData, "here")
 
 const data = [{
   name: "data1",
@@ -62,18 +62,19 @@ export default function Home() {
   }
 
   const handleSubmit = (selectedCheckbox, interval) => {
-    let timeValVolData, ohlcData, combinedOHLC;
+    let timeValVolData, ohlcData, combinedOHLC=[];
 
     setIsLoading(true);
 
    selectedCheckbox.forEach((item) => {
       if (item.isSelected) {
+        console.log("item",item.name)
         timeValVolData = convertRawDataToTimeValVol(item.value);
         ohlcData = convertToOHLC(timeValVolData, interval);
-        combinedOHLC = combineOHLC(ohlc, ohlcData);
+        combinedOHLC = combineOHLC(combinedOHLC, ohlcData);
       }
     })
-
+    console.log("ohlc",combinedOHLC)
     setOhlc(combinedOHLC);
     resetCheckedState();
     //console.log(combinedOHLC,"..here");
